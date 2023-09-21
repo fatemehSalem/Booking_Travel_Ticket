@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: temporary-reservation-service
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+    consumer:
+      bootstrap-servers: kafka:9092
+      group-id: bookItNow
+    streams:
+      properties:
+        spring.json.trusted.packages: "*"
+        state-dir: /tmp/kafka-streams/
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:appdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
