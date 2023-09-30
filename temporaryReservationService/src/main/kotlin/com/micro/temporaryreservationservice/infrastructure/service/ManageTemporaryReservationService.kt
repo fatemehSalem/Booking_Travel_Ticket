@@ -1,4 +1,4 @@
-package com.micro.temporaryreservationservice.service
+package com.micro.temporaryreservationservice.infrastructure.service
 
 import com.micro.commonservice.Order
 import org.springframework.stereotype.Service
@@ -14,13 +14,12 @@ class ManageTemporaryReservationService {
            status = orderPayment.status,
            productCount = orderPayment.productCount,
        )
-
-       if (orderPayment.status == "ACCEPT" && orderReservation.status == "ACCEPT") {
-           o.status = "CONFIRMED"
-       } else if (orderPayment.status == "REJECT" && orderReservation.status == "REJECT") {
-           o.status = "ROLLBACK"
-       } else if ((orderPayment.status == "REJECT" || orderReservation.status == "REJECT")) {
-           o.status = "ROLLBACK"
+       if (orderPayment.status == "ACCEPT"){
+           if(orderReservation.status == "ACCEPT")
+               o.status = "CONFIRMED"
+       } else {
+           if(orderReservation.status == "ACCEPT" || orderReservation.status == "REJECT")
+               o.status = "ROLLBACK"
        }
 
        return o

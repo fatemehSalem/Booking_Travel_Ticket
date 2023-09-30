@@ -1,7 +1,7 @@
-package com.micro.temporaryreservationservice.kafka
+package com.micro.temporaryreservationservice.infrastructure.kafka
 
 import com.micro.commonservice.Order
-import com.micro.temporaryreservationservice.service.ManageTemporaryReservationService
+import com.micro.temporaryreservationservice.infrastructure.service.ManageTemporaryReservationService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener

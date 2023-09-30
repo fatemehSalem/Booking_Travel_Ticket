@@ -1,4 +1,4 @@
-package com.micro.temporaryreservationservice.config
+package com.micro.temporaryreservationservice.infrastructure.config
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration

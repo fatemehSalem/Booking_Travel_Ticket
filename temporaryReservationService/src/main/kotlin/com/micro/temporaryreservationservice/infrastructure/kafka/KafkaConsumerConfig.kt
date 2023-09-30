@@ -1,6 +1,6 @@
-package com.micro.temporaryreservationservice.kafka
+package com.micro.temporaryreservationservice.infrastructure.kafka
 
-import com.micro.temporaryreservationservice.model.GenericJsonDeserializer
+import com.micro.temporaryreservationservice.domain.model.GenericJsonDeserializer
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.beans.factory.annotation.Value

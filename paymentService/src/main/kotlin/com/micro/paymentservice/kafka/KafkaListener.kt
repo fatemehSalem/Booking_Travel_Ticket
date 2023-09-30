@@ -13,15 +13,25 @@ class KafkaListener(
 ) {
     private val LOG: Logger = LoggerFactory.getLogger(KafkaListener::class.java)
     @KafkaListener(
-        topics = ["temp-reservation-topic"],
+        topics = ["reservation-response-topic"],
         groupId = "bookItNow"
     )
     fun onEvent(order: Order) {
         // val topic = order.topic()
-        LOG.info("Received in Payment-Service: ", order);
-        if(order.status == "NEW")
+        LOG.info("Received in Payment-Service from reservation service: ", order);
+        if(order.status == "ACCEPT")
             manageReservationService.reserve(order);
         else
             manageReservationService.confirm(order);
+    }
+
+    @KafkaListener(
+        topics = ["temp-reservation-topic"],
+        groupId = "bookItNow"
+    )
+    fun onEventTemp(order: Order) {
+        // val topic = order.topic()
+        LOG.info("Received in Payment-Service from temp-reservation service: ", order);
+        manageReservationService.confirm(order);
     }
 }

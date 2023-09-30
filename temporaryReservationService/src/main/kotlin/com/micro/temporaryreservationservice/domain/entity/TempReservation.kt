@@ -1,7 +1,8 @@
-package com.micro.temporaryreservationservice.data
+package com.micro.temporaryreservationservice.domain.entity
 
 
 import jakarta.persistence.*
+import java.math.BigDecimal
 import java.time.LocalDateTime
 
 @Entity
@@ -18,15 +19,12 @@ data class TempReservation(
     var productId: Long,
 
     @Column
-    var price: Int,
+    var price: BigDecimal,
 
     @Column
-    var status: String,
+    var quantity: Int,
 
-    @Column
-    var productCount: Int,
-
-    //....other properties....
+    //....other properties could be added....
 
     @Column(nullable = false, updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now(),
@@ -34,7 +32,5 @@ data class TempReservation(
     @Column
     var updatedAt: LocalDateTime = LocalDateTime.now()
 ) {
-        constructor() : this(0, 0, 0 ,0,"",0) {
-
-        }
+    constructor() : this(0, 0, 0, BigDecimal.ZERO, 0, LocalDateTime.now(), LocalDateTime.now())
 }
