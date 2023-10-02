@@ -72,7 +72,10 @@ spec:
                   key: postgres_dbname
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
-
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: raj@nola.com
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: admin
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
