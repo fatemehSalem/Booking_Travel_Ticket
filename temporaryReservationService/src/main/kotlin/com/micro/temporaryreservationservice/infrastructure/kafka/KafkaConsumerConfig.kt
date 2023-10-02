@@ -1,6 +1,5 @@
 package com.micro.temporaryreservationservice.infrastructure.kafka
 
-import com.micro.temporaryreservationservice.domain.model.GenericJsonDeserializer
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.beans.factory.annotation.Value
@@ -13,26 +12,28 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 
 @Configuration
 class KafkaConsumerConfig{
-    @Value("\${spring.kafka.consumer.bootstrap-servers}")
+/*    @Value("\${spring.kafka.consumer.bootstrap-servers}")
     private lateinit var bootstrapServers: String
 
     @Value("\${spring.kafka.consumer.group-id}")
     private lateinit var groupId: String
 
-
     @Bean
-    fun consumerFactory(): ConsumerFactory<String, Any> {
+    fun consumerFactory(): ConsumerFactory<String, String> {
         val configProps: MutableMap<String, Any> = mutableMapOf()
         configProps[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
         configProps[ConsumerConfig.GROUP_ID_CONFIG] = groupId
         configProps[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
-        configProps[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = GenericJsonDeserializer::class.java
-        return DefaultKafkaConsumerFactory(configProps, StringDeserializer(), GenericJsonDeserializer(Any::class.java))
+        configProps[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
+        //configProps[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = io.debezium.serde.DebeziumSerdes.Json::class.java
+
+        return DefaultKafkaConsumerFactory(configProps)
     }
+
     @Bean
-    fun kafkaListenerContainerFactory(consumerFactory: ConsumerFactory<String, Any>): ConcurrentKafkaListenerContainerFactory<String, Any> {
-        val factory = ConcurrentKafkaListenerContainerFactory<String, Any>()
+    fun kafkaListenerContainerFactory(consumerFactory: ConsumerFactory<String, String>): ConcurrentKafkaListenerContainerFactory<String, String> {
+        val factory = ConcurrentKafkaListenerContainerFactory<String, String>()
         factory.consumerFactory = consumerFactory
         return factory
-    }
+    }*/
 }

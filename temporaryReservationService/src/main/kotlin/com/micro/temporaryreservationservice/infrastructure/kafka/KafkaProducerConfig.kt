@@ -1,6 +1,5 @@
 package com.micro.temporaryreservationservice.infrastructure.kafka
 
-import com.micro.temporaryreservationservice.domain.model.GenericJsonSerializer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
@@ -12,7 +11,7 @@ import org.springframework.kafka.core.ProducerFactory
 
 @Configuration
 class KafkaProducerConfig {
-    @Value("\${spring.kafka.producer.bootstrap-servers}")
+/*    @Value("\${spring.kafka.producer.bootstrap-servers}")
     private lateinit var bootstrapServers: String
 
     @Bean
@@ -20,7 +19,8 @@ class KafkaProducerConfig {
         val props: MutableMap<String, Any> = mutableMapOf()
         props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
         props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = GenericJsonSerializer::class.java
+        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
+     //   props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = io.debezium.serde.DebeziumSerdes.Json::class.java
         return props
     }
 
@@ -32,5 +32,5 @@ class KafkaProducerConfig {
     @Bean
     fun kafkaTemplate(producerFactory: ProducerFactory<String, Any>): KafkaTemplate<String, Any> {
         return KafkaTemplate(producerFactory)
-    }
+    }*/
 }

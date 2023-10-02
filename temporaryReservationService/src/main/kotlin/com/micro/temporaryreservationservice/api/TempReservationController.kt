@@ -18,22 +18,13 @@ import org.springframework.kafka.core.KafkaTemplate
 @RestController
 @RequestMapping("/tempReservations")
 class TempReservationController(
-
-    private val kafkaTemplate: KafkaTemplate<String, Any>,
     private val tempReservationService: TempReservationService
 ) {
     private val LOG: Logger = LoggerFactory.getLogger(TempReservationController::class.java)
 
     @PostMapping
     fun createTemporaryReservation(@RequestBody request: TempReservationRequest) {
-
-
-        //check validation for ticket Temporary reservation (check total capacity and ....)
-        //we will use Temporary Reservation Service here
-        //.....
-        //tempReservationConfig.ticketCapacity
-        //.....
-        //
+        tempReservationService.saveTempReservationAndOutbox(request)
 
     }
 

@@ -3,6 +3,7 @@ package com.micro.temporaryreservationservice.domain.entity
 import jakarta.persistence.*
 import org.hibernate.annotations.JdbcTypeCode
 import org.hibernate.type.SqlTypes
+import java.util.*
 
 @Entity
 @Table(name = "outbox")
@@ -16,11 +17,11 @@ import org.hibernate.type.SqlTypes
 
 data class OutBox(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Column(name = "id", columnDefinition = "uuid", updatable = false, nullable = false)
+    var id: UUID = UUID.randomUUID(),
 
     @Column(nullable = false)
-    var aggregateType: String ,
+    var aggregateType: String,
 
     @Column(nullable = false)
     var aggregateId: Long,
@@ -32,7 +33,7 @@ data class OutBox(
     @JdbcTypeCode(SqlTypes.JSON)
     var payload: String
 ){
-    constructor() : this(0, "", 0, "", "")
+    constructor() : this(UUID.randomUUID(), "", 0, "", "")
 }
 
 

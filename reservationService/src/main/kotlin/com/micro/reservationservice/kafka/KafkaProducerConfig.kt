@@ -1,6 +1,5 @@
 package com.micro.reservationservice.kafka
 
-import com.micro.reservationservice.model.GenericJsonSerializer
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
@@ -20,7 +19,8 @@ class KafkaProducerConfig {
         val props: MutableMap<String, Any> = mutableMapOf()
         props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
         props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
-        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = GenericJsonSerializer::class.java
+        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
+        //   props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = io.debezium.serde.DebeziumSerdes.Json::class.java
         return props
     }
 

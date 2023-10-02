@@ -1,21 +1,46 @@
+#spring:
+#  application:
+#    name: temporary-reservation-service
+#  kafka:
+#    producer:
+#      bootstrap-servers: kafka:9092
+#    consumer:
+#      bootstrap-servers: kafka:9092
+#      group-id: bookItNow
+#    streams:
+#      properties:
+#        spring.json.trusted.packages: "*"
+#        state-dir: /tmp/kafka-streams/
+#  config:
+#    activate:
+#      on-profile: k8s
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:appdb}
+#    username: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:postgres}
+server:
+  port: 8081
+
 spring:
   application:
-    name: temporary-reservation-service
+    name: temp-reservation
   kafka:
     producer:
-      bootstrap-servers: kafka:9092
+      bootstrap-servers: kafka:29092
     consumer:
-      bootstrap-servers: kafka:9092
-      group-id: bookItNow
-    streams:
-      properties:
-        spring.json.trusted.packages: "*"
-        state-dir: /tmp/kafka-streams/
-  config:
-    activate:
-      on-profile: k8s
+      bootstrap-servers: kafka:29092
+      group-id: hepGroup
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:appdb}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://postgres:5432/preservation-db?serverTimezone=UTC
+    username: user
+    password: admin
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true

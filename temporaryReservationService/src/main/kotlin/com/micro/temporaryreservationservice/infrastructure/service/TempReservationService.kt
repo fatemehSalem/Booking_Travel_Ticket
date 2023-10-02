@@ -1,5 +1,6 @@
 package com.micro.temporaryreservationservice.infrastructure.service
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.micro.temporaryreservationservice.api.TempReservationController
 import com.micro.temporaryreservationservice.domain.entity.OutBox
 import com.micro.temporaryreservationservice.domain.entity.TempReservation
@@ -12,7 +13,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
-import com.micro.commonservice.SerializationUtils
 
 @Service
 class TempReservationService(
@@ -33,15 +33,17 @@ class TempReservationService(
        temp.updatedAt = LocalDateTime.now()
 
        val savedTempReservation = tempReservationRepository.save(temp)
-       LOG.info("Persist as TempReservation : {}", savedTempReservation)
+       LOG.info("Persist TempReservation : {}", savedTempReservation)
 
-       val serializationUtils = SerializationUtils()
+       val objectMapper = ObjectMapper()
+       val tempReservationJson = objectMapper.writeValueAsString(savedTempReservation)
+
        val outbox = OutBox()
        outbox.aggregateId = savedTempReservation.reservationId
        outbox.aggregateType = "TEMP-RESERVATION"
        outbox.eventType = TempReservationStatus.CREATED.toString()
-       //outbox.payload = serializationUtils.serializeEntity(savedTempReservation)
+       outbox.payload = tempReservationJson
        val savedOutBox = outBoxRepository.save(outbox)
-       LOG.info("Persist as Outbox : {}", savedOutBox)
+       LOG.info("Persist Outbox : {}", savedOutBox)
     }
 }
