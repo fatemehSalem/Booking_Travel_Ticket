@@ -13,5 +13,5 @@ metadata:
   name: bookitnow-secrets
 type: Opaque
 data:
-  postgres_username: user
-  postgres_password: admin
+  postgres_username: dXNlcg==
+  postgres_password: YWRtaW4=
