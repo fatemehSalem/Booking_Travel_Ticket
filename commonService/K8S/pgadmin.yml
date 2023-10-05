@@ -19,6 +19,19 @@ spec:
             - containerPort: 80
           env:
             - name: PGADMIN_DEFAULT_EMAIL
-              value: your-email@example.com
+              value: raj@nola.com
             - name: PGADMIN_DEFAULT_PASSWORD
-              value: your-password
+              value: admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin-service
+spec:
+  selector:
+    app: pgadmin
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
