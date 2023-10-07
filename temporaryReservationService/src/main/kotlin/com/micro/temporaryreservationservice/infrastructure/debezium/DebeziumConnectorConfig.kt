@@ -48,6 +48,15 @@ class DebeziumConfiguration {
             .with("include.schema.changes", "true")
             .with("topic", "reservation-request")
             .build()
+       /* # Kafka connection details
+        database.history.kafka.bootstrap.servers=kafka-broker1:9092,kafka-broker2:9092
+        database.history.kafka.topic=debezium_database_history
+
+        # Serialize events using the Avro format (optional)
+        key.converter=io.confluent.connect.avro.AvroConverter
+        key.converter.schema.registry.url=http://schema-registry:8081
+        value.converter=io.confluent.connect.avro.AvroConverter
+        value.converter.schema.registry.url=http://schema-registry:8081*/
     }
 
 }

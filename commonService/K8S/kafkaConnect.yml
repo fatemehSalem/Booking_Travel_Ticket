@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-connect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-connect
+  template:
+    metadata:
+      labels:
+        app: kafka-connect
+    spec:
+      containers:
+        - name: kafka-connect
+          image: confluentinc/cp-kafka-connect:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: CONNECT_BOOTSTRAP_SERVERS
+              value: kafka:9092
+            - name: CONNECT_GROUP_ID
+              value: hepGroup
+            - name: CONNECT_CONFIG_STORAGE_TOPIC
+              value: kafka-connect-configs
+            - name: CONNECT_OFFSET_STORAGE_TOPIC
+              value: kafka-connect-offsets
+            - name: CONNECT_STATUS_STORAGE_TOPIC
+              value: kafka-connect-status
+            - name: SCHEMA_REGISTRY_URL
+              value: http://schema-registry:8081
+            - name: CONNECT_KEY_CONVERTER
+              value: org.apache.kafka.connect.storage.StringConverter
+            - name: CONNECT_VALUE_CONVERTER
+              value: org.apache.kafka.connect.json.JsonConverter
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-connect-service
+spec:
+  selector:
+    app: kafka-connect
+  ports:
+    - protocol: TCP
+      port: 8083
+  type: ClusterIP
