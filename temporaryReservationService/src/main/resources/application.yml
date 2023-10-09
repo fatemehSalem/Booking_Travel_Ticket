@@ -27,12 +27,12 @@ spring:
     name: temp-reservation
   kafka:
     producer:
-      bootstrap-servers: kafka:9092
+      bootstrap-servers: localhost:9092
     consumer:
-      bootstrap-servers: kafka:9092
+      bootstrap-servers: localhost:9092
       group-id: hepGroup
   datasource:
-    url: jdbc:postgresql://postgres:5432/preservation-db?serverTimezone=UTC
+    url: jdbc:postgresql://localhost:5432/postgres?serverTimezone=UTC
     username: user
     password: admin
   jpa:

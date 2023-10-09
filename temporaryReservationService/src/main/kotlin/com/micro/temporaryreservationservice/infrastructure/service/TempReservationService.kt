@@ -1,6 +1,7 @@
 package com.micro.temporaryreservationservice.infrastructure.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.micro.temporaryreservationservice.api.TempReservationController
 import com.micro.temporaryreservationservice.domain.entity.OutBox
 import com.micro.temporaryreservationservice.domain.entity.TempReservation
@@ -35,7 +36,7 @@ class TempReservationService(
        val savedTempReservation = tempReservationRepository.save(temp)
        LOG.info("Persist TempReservation : {}", savedTempReservation)
 
-       val objectMapper = ObjectMapper()
+       val objectMapper = ObjectMapper().registerModule(JavaTimeModule())
        val tempReservationJson = objectMapper.writeValueAsString(savedTempReservation)
 
        val outbox = OutBox()

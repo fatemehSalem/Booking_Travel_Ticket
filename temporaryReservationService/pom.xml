@@ -64,18 +64,25 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.2.5.Final</version>
         </dependency>-->
-        <dependency>
+<!--        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.6.5.Final</version>
         </dependency>
 
-        <!-- Hibernate Types (for JSONB support) -->
+        &lt;!&ndash; Hibernate Types (for JSONB support) &ndash;&gt;
         <dependency>
             <groupId>com.vladmihalcea</groupId>
             <artifactId>hibernate-types-52</artifactId>
             <version>2.20.0</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.15.2</version>
         </dependency>
+
 
         <!-- debezium -->
         <dependency>

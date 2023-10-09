@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
 import java.sql.Timestamp
 
+/*
 @Configuration
 data class TempReservationConfig(
     @Value("\${ticket.capacity}")
@@ -27,4 +28,5 @@ data class TimeSlot(
     val time: Timestamp,
     val available_seats: Int
 )
+*/
 
