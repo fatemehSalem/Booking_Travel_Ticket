@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafdrop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafdrop
+  template:
+    metadata:
+      labels:
+        app: kafdrop
+    spec:
+      containers:
+        - name: kafdrop
+          image: obsidiandynamics/kafdrop:latest
+          ports:
+            - containerPort: 9000
+          env:
+            - name: KAFKA_BROKERCONNECT
+              value: kafka:9092
+            - name: JVM_OPTS
+              value: "-Xmx512M -Xms512M"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafdrop-service
+spec:
+  selector:
+    app: kafdrop
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+  type: LoadBalancer
