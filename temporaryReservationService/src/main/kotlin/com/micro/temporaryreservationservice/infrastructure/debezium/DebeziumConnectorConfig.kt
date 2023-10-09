@@ -42,21 +42,16 @@ class DebeziumConfiguration {
             .with("transforms.outbox.table.expand.json.payload", "true")
             .with("transforms.outbox.tracing.with.context.field.only" , "true")
             .with("key.converter", "org.apache.kafka.connect.storage.StringConverter")
+            .with("database.history.kafka.topic","temporaryReservationRequest")
             .with("key.converter.schemas.enable", "true")
             .with("value.converter", "org.apache.kafka.connect.json.JsonConverter")
             .with("value.converter.schemas.enable", "true")
             .with("include.schema.changes", "true")
             .with("topic", "reservation-request")
+            .with("database.history.kafka.bootstrap.servers","kafka:9092")
+            .with("key.converter.schema.registry.url","http://schema-registry:8081")
+            .with("value.converter.schema.registry.url", "http://schema-registry:8081")
             .build()
-       /* # Kafka connection details
-        database.history.kafka.bootstrap.servers=kafka-broker1:9092,kafka-broker2:9092
-        database.history.kafka.topic=debezium_database_history
-
-        # Serialize events using the Avro format (optional)
-        key.converter=io.confluent.connect.avro.AvroConverter
-        key.converter.schema.registry.url=http://schema-registry:8081
-        value.converter=io.confluent.connect.avro.AvroConverter
-        value.converter.schema.registry.url=http://schema-registry:8081*/
     }
 
 }
