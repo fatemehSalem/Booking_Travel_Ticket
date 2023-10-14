@@ -21,7 +21,7 @@ spec:
             - name: CONNECT_BOOTSTRAP_SERVERS
               value: kafka:9092
             - name: CONNECT_GROUP_ID
-              value: hepGroup
+              value: kafkaGroup
             - name: CONNECT_CONFIG_STORAGE_TOPIC
               value: kafka-connect-configs
             - name: CONNECT_OFFSET_STORAGE_TOPIC

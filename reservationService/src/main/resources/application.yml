@@ -6,20 +6,20 @@ spring:
     name: temp-reservation
   kafka:
     producer:
-      bootstrap-servers: kafka:29092
+      bootstrap-servers: localhost:9092
     consumer:
-      bootstrap-servers: kafka:29092
-      group-id: hepGroup
-  datasource:
-    url: jdbc:postgresql://postgres:5432/reservation-db?serverTimezone=UTC
-    username: user
-    password: admin
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+      bootstrap-servers: localhost:9092
+      group-id: kafkaGroup
+#  datasource:
+#    url: jdbc:postgresql://postgres:5432/reservation-db?serverTimezone=UTC
+#    username: user
+#    password: admin
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: true

@@ -34,4 +34,7 @@ spec:
     - protocol: TCP
       port: 9000
       targetPort: 9000
-  type: LoadBalancer
+      nodePort: 30287
+  type: NodePort
+
+
