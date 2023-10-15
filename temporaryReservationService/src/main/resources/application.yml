@@ -3,9 +3,9 @@
 #    name: temporary-reservation-service
 #  kafka:
 #    producer:
-#      bootstrap-servers: kafka:9092
+#      bootstrap-servers: kafka-svc:9092
 #    consumer:
-#      bootstrap-servers: kafka:9092
+#      bootstrap-servers: kafka-svc:9092
 #      group-id: bookItNow
 #    streams:
 #      properties:

@@ -20,7 +20,7 @@ spec:
             - containerPort: 9000
           env:
             - name: KAFKA_BROKERCONNECT
-              value: kafka:9092
+              value: kafka-svc:9092
             - name: JVM_OPTS
               value: "-Xmx512M -Xms512M"
 ---

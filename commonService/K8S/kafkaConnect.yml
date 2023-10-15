@@ -20,7 +20,7 @@ spec:
             - containerPort: 8083
           env:
             - name: CONNECT_BOOTSTRAP_SERVERS
-              value: kafka:9092
+              value: kafka-svc:9092
             - name: CONNECT_GROUP_ID
               value: kafkaGroup
             - name: CONNECT_CONFIG_STORAGE_TOPIC
@@ -35,6 +35,8 @@ spec:
               value: org.apache.kafka.connect.storage.StringConverter
             - name: CONNECT_VALUE_CONVERTER
               value: org.apache.kafka.connect.json.JsonConverter
+            - name: CONNECT_REST_ADVERTISED_HOST_NAME
+              value: localhost
 ---
 apiVersion: v1
 kind: Service

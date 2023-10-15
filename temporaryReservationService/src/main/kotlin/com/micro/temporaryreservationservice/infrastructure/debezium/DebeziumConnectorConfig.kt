@@ -48,7 +48,7 @@ class DebeziumConfiguration {
             .with("value.converter.schemas.enable", "true")
             .with("include.schema.changes", "true")
             .with("topic", "reservation-request")
-            .with("database.history.kafka.bootstrap.servers","kafka:9092")
+            .with("database.history.kafka.bootstrap.servers","kafka-svc:9092")
             .with("key.converter.schema.registry.url","http://schema-registry:8081")
             .with("value.converter.schema.registry.url", "http://schema-registry:8081")
             .build()
