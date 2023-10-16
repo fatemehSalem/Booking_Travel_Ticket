@@ -15,7 +15,8 @@ RUN wget -O /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz https://downloads.a
  && rm -rf /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
 
 COPY ./entrypoint.sh /
-RUN ["chmod", "+x", "/entrypoint.sh"]
+RUN  chmod +x /entrypoint.sh
+#RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
 
